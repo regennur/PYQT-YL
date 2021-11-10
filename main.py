@@ -4,8 +4,9 @@
 from NoteDb import NoteDb
 import sys
 import sqlite3
-from PyQt6.QtWidgets import (QListWidget, QWidget, QMessageBox,
+from PyQt6.QtWidgets import (QListWidget, QWidget,
                              QApplication, QVBoxLayout)
+import winsound
 
 
 class NotesList(QWidget):
@@ -40,13 +41,16 @@ class NotesList(QWidget):
         vbox.addWidget(listWidget)
         self.setLayout(vbox)
 
-        self.setGeometry(30, 30, 30, 300)
-        self.setWindowTitle('QListWidget')
+        self.setGeometry(30, 30, 100, 300)
+        self.setWindowTitle('Note\'s player')
         self.show()
 
     def onClicked(self, item):
-        QMessageBox.information(self, "Info", item.text())
-        print(item.text())
+        note_db = self.note_db
+        nota_chastota = note_db.get(item.text())
+
+        # немного не чистые ноты, из-за того что на вход принимает integer
+        winsound.Beep(round(nota_chastota), 980)
 
 
 if __name__ == '__main__':

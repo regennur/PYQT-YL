@@ -23,7 +23,8 @@ class NoteDb:
         self.cur = cur
 
     def create(self):
-        '''создает базу'''
+        '''создает базу данных music, 
+        если она не существует'''
         cur = self.cur
         conn = self.conn
 

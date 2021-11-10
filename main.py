@@ -53,9 +53,21 @@ class NotesList(QWidget):
         winsound.Beep(round(nota_chastota), 980)
 
 
+StyleSheet = '''
+QWizardPage {
+    background-color: rgb(100, 133, 202);
+}
+QListWidget {
+    spacing: 5px;   
+    background-color: rgb(17, 96, 98);
+    color: rgb(255, 255, 255);
+}
+'''
+
 if __name__ == '__main__':
 
     app = QApplication(sys.argv)
+    app.setStyleSheet(StyleSheet)
 
     li = NotesList()
 
